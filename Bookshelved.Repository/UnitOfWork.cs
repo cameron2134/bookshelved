@@ -1,5 +1,6 @@
 ﻿using Bookshelved.Core.DomainModels.Book;
 using Bookshelved.Core.Interfaces.Repos;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,38 +9,52 @@ using System.Threading.Tasks;
 
 namespace Bookshelved.Repository
 {
-    public class UnitOfWork : IDisposable, IUnitOfWork
+    public class UnitOfWork<TContext> : IUnitOfWork<TContext>, IDisposable
+        where TContext : DbContext
     {
-        private readonly BookshelfContext _context;
-        private Repository<Book> _bookRepo;
-        private Repository<Series> _seriesRepo;
+        private readonly TContext _context;
+        private IDictionary<Type, object> _repos;
 
-        public Repository<Book> BookRepo {
-            get {
-                if (_bookRepo == null)
-                    _bookRepo = new Repository<Book>(_context);
-
-                return _bookRepo;
-            }
-        }
-
-        public Repository<Series> SeriesRepo {
-            get {
-                if (_seriesRepo == null)
-                    _seriesRepo = new Repository<Series>(_context);
-
-                return _seriesRepo;
-            }
-        }
-
-        public UnitOfWork(BookshelfContext context)
+        public UnitOfWork(TContext context)
         {
             _context = context;
         }
 
-        public async Task<int> Save()
+        public Task Save()
         {
-            return await _context.SaveChangesAsync();
+            return _context.SaveChangesAsync();
+        }
+
+        public Task BeginTransaction()
+        {
+            return _context.Database.BeginTransactionAsync();
+        }
+
+        public Task CommitTransaction()
+        {
+            return _context.Database.CommitTransactionAsync();
+        }
+
+        public Task RollbackTransaction()
+        {
+            return _context.Database.RollbackTransactionAsync();
+        }
+
+        public Repository<T> GetRepository<T>() where T : class
+        {
+            if (_repos == null)
+                _repos = new Dictionary<Type, object>();
+
+            var type = typeof(T);
+            if (!_repos.ContainsKey(type))
+            {
+                var repositoryType = typeof(Repository<T>);
+                var repositoryInstance = Activator.CreateInstance(repositoryType.MakeGenericType(typeof(T)), _context);
+
+                _repos.Add(type, repositoryInstance);
+            }
+
+            return (Repository<T>)_repos[type];
         }
 
         private bool disposed = false;
