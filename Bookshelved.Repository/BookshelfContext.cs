@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Bookshelved.Repository
 {
-    public class AppDbContext : DbContext
+    public class BookshelfContext : DbContext
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        public BookshelfContext(DbContextOptions<BookshelfContext> options) : base(options)
         {
         }
 
