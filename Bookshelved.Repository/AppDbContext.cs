@@ -19,13 +19,25 @@ namespace Bookshelved.Repository
         {
             #region Book Schema
 
-            modelBuilder.Entity<Book>()
-                .ToTable("Books", "Book")
-                .HasOne<Series>()
-                .WithOne()
-                .HasForeignKey("FK_Book_Series");
+            modelBuilder.Entity<Book>(entity =>
+            {
+                entity.ToTable("Books", "Book");
 
-            // Author
+                entity.HasOne<Series>()
+                .WithOne()
+                .HasForeignKey<Book>(o => o.SeriesID)
+                .HasConstraintName("FK_Book_Series");
+
+                entity.HasOne<Author>()
+                .WithOne()
+                .HasForeignKey<Book>(o => o.AuthorID)
+                .HasConstraintName("FK_Book_Author");
+            });
+
+            modelBuilder.Entity<Author>(entity =>
+            {
+                entity.ToTable("Authors", "Book");
+            });
 
             modelBuilder.Entity<BookProgress>()
                 .ToTable("BookProgress", "Book");
