@@ -9,7 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\Bookshelved.Core\Bookshelved.Core.csproj" />
+    <ProjectReference Include="..\Bookshelved.Repository\Bookshelved.Repository.csproj" />
   </ItemGroup>
 
 </Project>

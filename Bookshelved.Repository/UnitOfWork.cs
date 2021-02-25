@@ -40,21 +40,21 @@ namespace Bookshelved.Repository
             return _context.Database.RollbackTransactionAsync();
         }
 
-        public IRepository GetRepository<T>() where T : class
+        public IRepository<TEntity> GetRepository<TEntity>() where TEntity : class
         {
             if (_repos == null)
                 _repos = new Dictionary<Type, object>();
 
-            var type = typeof(T);
+            var type = typeof(TEntity);
             if (!_repos.ContainsKey(type))
             {
-                var repositoryType = typeof(Repository<T>);
-                var repositoryInstance = Activator.CreateInstance(repositoryType.MakeGenericType(typeof(T)), _context);
+                var repositoryType = typeof(Repository<TEntity>);
+                var repositoryInstance = Activator.CreateInstance(repositoryType.MakeGenericType(typeof(TEntity)), _context);
 
                 _repos.Add(type, repositoryInstance);
             }
 
-            return (IRepository)_repos[type];
+            return (IRepository<TEntity>)_repos[type];
         }
 
         private bool disposed = false;

@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace Bookshelved.Repository
 {
-    public class Repository<TEntity> : IRepository where TEntity : class
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         internal BookshelfContext _context;
         internal DbSet<TEntity> _dbSet;

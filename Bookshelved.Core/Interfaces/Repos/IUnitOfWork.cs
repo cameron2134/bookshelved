@@ -14,6 +14,6 @@ namespace Bookshelved.Core.Interfaces.Repos
 
         Task Save();
 
-        IRepository GetRepository<T>() where T : class;
+        IRepository<T> GetRepository<T>() where T : class;
     }
 }
