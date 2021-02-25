@@ -13,5 +13,7 @@ namespace Bookshelved.Core.Interfaces.Repos
         Task RollbackTransaction();
 
         Task Save();
+
+        IRepository GetRepository<T>() where T : class;
     }
 }

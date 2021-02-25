@@ -40,7 +40,7 @@ namespace Bookshelved.Repository
             return _context.Database.RollbackTransactionAsync();
         }
 
-        public Repository<T> GetRepository<T>() where T : class
+        public IRepository GetRepository<T>() where T : class
         {
             if (_repos == null)
                 _repos = new Dictionary<Type, object>();
@@ -54,7 +54,7 @@ namespace Bookshelved.Repository
                 _repos.Add(type, repositoryInstance);
             }
 
-            return (Repository<T>)_repos[type];
+            return (IRepository)_repos[type];
         }
 
         private bool disposed = false;
