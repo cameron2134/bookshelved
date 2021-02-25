@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Bookshelved.Core.Interfaces.Repos;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace Bookshelved.Repository
 {
-    public class Repository<TEntity> where TEntity : class
+    public class Repository<TEntity> : IRepository where TEntity : class
     {
         internal BookshelfContext _context;
         internal DbSet<TEntity> _dbSet;
