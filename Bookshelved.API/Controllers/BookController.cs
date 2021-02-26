@@ -33,6 +33,7 @@ namespace Bookshelved.API.Controllers
         {
             try
             {
+                var book = _bookRepo.GetByID(id);
                 return Ok();
             }
             catch (Exception ex)

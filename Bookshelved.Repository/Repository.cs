@@ -7,12 +7,14 @@ using System.Linq.Expressions;
 
 namespace Bookshelved.Repository
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
+    public class Repository<TContext, TEntity> : IRepository<TEntity>
+        where TEntity : class
+        where TContext : DbContext
     {
-        internal BookshelfContext _context;
+        internal TContext _context;
         internal DbSet<TEntity> _dbSet;
 
-        public Repository(BookshelfContext context)
+        public Repository(TContext context)
         {
             _context = context;
             _dbSet = context.Set<TEntity>();

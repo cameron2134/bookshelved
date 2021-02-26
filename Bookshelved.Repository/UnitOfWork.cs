@@ -47,12 +47,7 @@ namespace Bookshelved.Repository
 
             var type = typeof(TEntity);
             if (!_repos.ContainsKey(type))
-            {
-                var repositoryType = typeof(Repository<TEntity>);
-                var repositoryInstance = Activator.CreateInstance(repositoryType.MakeGenericType(typeof(TEntity)), _context);
-
-                _repos.Add(type, repositoryInstance);
-            }
+                _repos.Add(type, new Repository<TContext, TEntity>(_context));
 
             return (IRepository<TEntity>)_repos[type];
         }
