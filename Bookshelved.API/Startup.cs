@@ -34,7 +34,7 @@ namespace Bookshelved.API
             var connectionString = Configuration.GetConnectionString("BookshelfDB");
 
             services.AddDbContext<BookshelfContext>(o => o.UseSqlServer(connectionString));
-            services.AddTransient<IUnitOfWork<BookshelfContext>, UnitOfWork<BookshelfContext>>();
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddAutoMapper(typeof(MappingProfile));
 
             services.AddControllers();

@@ -1,5 +1,6 @@
 ﻿using Bookshelved.Core.DomainModels.Book;
 using Bookshelved.Core.Interfaces.Repos;
+using Bookshelved.Repository.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,13 +10,12 @@ using System.Threading.Tasks;
 
 namespace Bookshelved.Repository
 {
-    public class UnitOfWork<TContext> : IUnitOfWork<TContext>, IDisposable
-        where TContext : DbContext
+    public class UnitOfWork : IUnitOfWork, IDisposable
     {
-        private readonly TContext _context;
-        private IDictionary<Type, object> _repos;
+        private readonly BookshelfContext _context;
+        private IDictionary<string, object> _repos;
 
-        public UnitOfWork(TContext context)
+        public UnitOfWork(BookshelfContext context)
         {
             _context = context;
         }
@@ -43,13 +43,13 @@ namespace Bookshelved.Repository
         public IRepository<TEntity> GetRepository<TEntity>() where TEntity : class
         {
             if (_repos == null)
-                _repos = new Dictionary<Type, object>();
+                _repos = new Dictionary<string, object>
+                {
+                    { typeof(Book).Name, new BookRepository(_context) }
+                };
 
-            var type = typeof(TEntity);
-            if (!_repos.ContainsKey(type))
-                _repos.Add(type, new Repository<TContext, TEntity>(_context));
-
-            return (IRepository<TEntity>)_repos[type];
+            IRepository<TEntity> repository = (IRepository<TEntity>)_repos[typeof(TEntity).Name];
+            return repository;
         }
 
         private bool disposed = false;
