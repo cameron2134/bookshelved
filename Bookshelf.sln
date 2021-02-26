@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookshelved.API", "Bookshelved.API\Bookshelved.API.csproj", "{EFD9CE22-9A12-424D-8AC8-4B1308610D18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bookshelved.API", "Bookshelved.API\Bookshelved.API.csproj", "{EFD9CE22-9A12-424D-8AC8-4B1308610D18}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bookshelved.Repository", "Bookshelved.Repository\Bookshelved.Repository.csproj", "{2EC95BD0-2873-4988-BBB7-A4C3A99AE7CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookshelved.Core", "Bookshelved.Core\Bookshelved.Core.csproj", "{59C46F25-9431-452A-B2F2-475008B73AEA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{EFD9CE22-9A12-424D-8AC8-4B1308610D18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EFD9CE22-9A12-424D-8AC8-4B1308610D18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EFD9CE22-9A12-424D-8AC8-4B1308610D18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EC95BD0-2873-4988-BBB7-A4C3A99AE7CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EC95BD0-2873-4988-BBB7-A4C3A99AE7CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EC95BD0-2873-4988-BBB7-A4C3A99AE7CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EC95BD0-2873-4988-BBB7-A4C3A99AE7CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59C46F25-9431-452A-B2F2-475008B73AEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59C46F25-9431-452A-B2F2-475008B73AEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59C46F25-9431-452A-B2F2-475008B73AEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59C46F25-9431-452A-B2F2-475008B73AEA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
