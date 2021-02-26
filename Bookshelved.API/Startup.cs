@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Bookshelved.API.Mappings;
 using Bookshelved.Core.Interfaces.Repos;
 using Bookshelved.Repository;
 using Microsoft.AspNetCore.Builder;
@@ -34,6 +35,7 @@ namespace Bookshelved.API
 
             services.AddDbContext<BookshelfContext>(o => o.UseSqlServer(connectionString));
             services.AddTransient<IUnitOfWork<BookshelfContext>, UnitOfWork<BookshelfContext>>();
+            services.AddAutoMapper(typeof(MappingProfile));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

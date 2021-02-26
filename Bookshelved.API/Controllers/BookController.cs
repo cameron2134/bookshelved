@@ -1,4 +1,6 @@
-﻿using Bookshelved.Core.DomainModels.Book;
+﻿using AutoMapper;
+using Bookshelved.Core.DomainModels.Book;
+using Bookshelved.Core.DTOs;
 using Bookshelved.Core.Interfaces.Repos;
 using Bookshelved.Repository;
 using Microsoft.AspNetCore.Mvc;
@@ -15,11 +17,13 @@ namespace Bookshelved.API.Controllers
     {
         private readonly IUnitOfWork<BookshelfContext> _unitOfWork;
         private readonly IRepository<Book> _bookRepo;
+        private readonly IMapper _mapper;
 
-        public BookController(IUnitOfWork<BookshelfContext> unitOfWork)
+        public BookController(IUnitOfWork<BookshelfContext> unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _bookRepo = _unitOfWork.GetRepository<Book>();
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -34,7 +38,11 @@ namespace Bookshelved.API.Controllers
             try
             {
                 var book = _bookRepo.GetByID(id);
-                return Ok();
+                if (book == null)
+                    return NotFound($"The requested resource {id} was not found.");
+
+                var bookDTO = _mapper.Map<BookDTO>(book);
+                return Ok(bookDTO);
             }
             catch (Exception ex)
             {

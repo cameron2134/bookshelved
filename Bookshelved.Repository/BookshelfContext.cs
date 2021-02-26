@@ -23,14 +23,14 @@ namespace Bookshelved.Repository
             {
                 entity.ToTable("Books", "Book");
 
-                entity.HasOne<Series>()
-                .WithOne()
-                .HasForeignKey<Book>(o => o.SeriesID)
+                entity.HasOne<Series>(o => o.Series)
+                .WithMany(o => o.Books)
+                .HasForeignKey(o => o.SeriesID)
                 .HasConstraintName("FK_Book_Series");
 
-                entity.HasOne<Author>()
-                .WithOne()
-                .HasForeignKey<Book>(o => o.AuthorID)
+                entity.HasOne<Author>(o => o.Author)
+                .WithMany(o => o.Books)
+                .HasForeignKey(o => o.AuthorID)
                 .HasConstraintName("FK_Book_Author");
             });
 
@@ -42,8 +42,10 @@ namespace Bookshelved.Repository
             modelBuilder.Entity<BookProgress>()
                 .ToTable("BookProgress", "Book");
 
-            modelBuilder.Entity<Series>()
-                .ToTable("Series", "Book");
+            modelBuilder.Entity<Series>(entity =>
+            {
+                entity.ToTable("Series", "Book");
+            });
 
             modelBuilder.Entity<Reviews>()
                 .ToTable("Reviews", "Book");
