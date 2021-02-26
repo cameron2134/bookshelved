@@ -1,11 +1,8 @@
 ﻿using Bookshelved.Core.DomainModels.Book;
 using Bookshelved.Core.Interfaces.Repos;
 using Bookshelved.Repository.Repositories;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Bookshelved.Repository

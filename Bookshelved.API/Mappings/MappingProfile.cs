@@ -2,10 +2,6 @@
 using Bookshelved.Core.DomainModels.Book;
 using Bookshelved.Core.DTOs;
 using Bookshelved.Core.DTOs.Book;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Bookshelved.API.Mappings
 {

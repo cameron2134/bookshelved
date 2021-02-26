@@ -1,13 +1,10 @@
 ﻿using AutoMapper;
 using Bookshelved.Core.DomainModels.Book;
-using Bookshelved.Core.DTOs;
 using Bookshelved.Core.DTOs.Book;
 using Bookshelved.Core.Interfaces.Repos;
-using Bookshelved.Repository;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Bookshelved.API.Controllers
