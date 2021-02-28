@@ -1,3 +1,4 @@
+using Bookshelved.API.Filters;
 using Bookshelved.API.Mappings;
 using Bookshelved.Core.Interfaces.Repos;
 using Bookshelved.Repository;
@@ -30,6 +31,7 @@ namespace Bookshelved.API
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddAutoMapper(typeof(MappingProfile));
 
+            services.AddMvc();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
