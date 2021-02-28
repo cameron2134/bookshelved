@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Bookshelved.API.Filters;
+using Bookshelved.API.Options;
 using Bookshelved.Core.DomainModels.Book;
 using Bookshelved.Core.DTOs;
 using Bookshelved.Core.DTOs.Book;
@@ -28,11 +29,16 @@ namespace Bookshelved.API.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        //[HttpGet]
+        //public async Task<IActionResult> Get(BookOptions bookOptions)
+        //{
+        //    try
+        //    {
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //    }
+        //}
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetBook(int id)
