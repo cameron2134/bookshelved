@@ -1,16 +1,14 @@
 ﻿@page "/fetchdata"
 
-@using Bookshelved.Web.Data
 @using Bookshelved.Services
 @using Bookshelved.Core.DTOs
-@inject WeatherForecastService ForecastService
 @inject BookService BookService
 
 <h1>Weather forecast</h1>
 
 <p>This component demonstrates fetching data from a service.</p>
 
-@if (forecasts == null)
+@if (_books == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -36,12 +34,10 @@ else
 }
 
 @code {
-    private WeatherForecast[] forecasts;
     private IEnumerable<BookDTO> _books;
 
     protected override async Task OnInitializedAsync()
     {
-        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
         _books = BookService.GetAll();
     }
 }
