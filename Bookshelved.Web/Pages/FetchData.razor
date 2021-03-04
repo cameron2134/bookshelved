@@ -4,34 +4,34 @@
 @using Bookshelved.Core.DTOs
 @inject BookService BookService
 
-<h1>Weather forecast</h1>
+<div class="container">
+    <h1>Your Library</h1>
 
-<p>This component demonstrates fetching data from a service.</p>
-
-@if (_books == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Book ID</th>
-                <th>Name</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var book in _books)
-            {
+    @if (_books == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <table class="striped">
+            <thead>
                 <tr>
-                    <td>@book.ID</td>
-                    <td>@book.Name</td>
+                    <th>Book IDd</th>
+                    <th>Name</th>
                 </tr>
-            }
-        </tbody>
-    </table>
-}
+            </thead>
+            <tbody>
+                @foreach (var book in _books)
+                {
+                    <tr>
+                        <td>@book.ID</td>
+                        <td>@book.Name</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
 
 @code {
     private IEnumerable<BookDTO> _books;

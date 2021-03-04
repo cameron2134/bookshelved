@@ -13,4 +13,8 @@
     <ProjectReference Include="..\Bookshelved.Services\Bookshelved.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\css\" />
+  </ItemGroup>
+
 </Project>

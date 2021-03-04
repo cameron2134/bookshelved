@@ -9,9 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bookshelved.Repository", "B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bookshelved.Core", "Bookshelved.Core\Bookshelved.Core.csproj", "{59C46F25-9431-452A-B2F2-475008B73AEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookshelved.Web", "Bookshelved.Web\Bookshelved.Web.csproj", "{6020C18F-2E80-42E3-8698-7C97CA522B86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bookshelved.Web", "Bookshelved.Web\Bookshelved.Web.csproj", "{6020C18F-2E80-42E3-8698-7C97CA522B86}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookshelved.Services", "Bookshelved.Services\Bookshelved.Services.csproj", "{8AB67344-E7C0-426E-B54E-91CE3EED8044}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bookshelved.Services", "Bookshelved.Services\Bookshelved.Services.csproj", "{8AB67344-E7C0-426E-B54E-91CE3EED8044}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
