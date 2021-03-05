@@ -3,10 +3,18 @@
 @using Bookshelved.Services
 @using Bookshelved.Core.DTOs
 @inject BookService BookService
+@inject NavigationManager Navigation
 
 <div class="container">
     <h1>Your Library</h1>
 
+    <AuthorizeView>
+        <Authorized>
+            <h1>You are signed in as: @context.User.Identity.Name</h1>
+        </Authorized>
+        <NotAuthorized>Sign in</NotAuthorized>
+    </AuthorizeView>
+    
     @if (_books == null)
     {
         <p><em>Loading...</em></p>
@@ -42,5 +50,6 @@
     protected override async Task OnInitializedAsync()
     {
         _books = BookService.GetAll();
+        
     }
 }

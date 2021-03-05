@@ -1,11 +1,32 @@
-﻿<nav>
+﻿@inject NavigationManager Navigation
+<nav>
     <div class="nav-wrapper">
         <a href="" class="brand-logo"><i class="material-icons">cloud</i>Logo</a>
         <ul class="right hide-on-med-and-down">
-            <li><a href="sass.html"><i class="material-icons">search</i></a></li>
-            <li><a href="fetchdata"><i class="material-icons">book</i></a></li>
-            <li><a href="collapsible.html"><i class="material-icons">account_circle</i></a></li>
-            <li><a href="collapsible.html"><i class="material-icons">notifications</i></a></li>
+            <AuthorizeView>
+                <Authorized>
+                    <li>
+                        <a href="">
+                            <i class="material-icons">search</i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="fetchdata">
+                            <i class="material-icons">book</i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Identity/Account/Manage/Index">
+                            <i class="material-icons">account_circle</i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="material-icons">notifications</i>
+                        </a>
+                    </li>
+                </Authorized>
+            </AuthorizeView>
         </ul>
     </div>
 </nav>

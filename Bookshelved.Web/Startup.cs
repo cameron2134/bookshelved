@@ -27,11 +27,14 @@ namespace Bookshelved.Web
 
             var connectionString = Configuration.GetConnectionString("BookshelfDB");
 
+            services.AddHttpContextAccessor();
+            
             services.AddDbContext<BookshelfContext>(o => o.UseSqlServer(connectionString));
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 
             services.AddAutoMapper(typeof(MappingProfile));
             services.AddTransient<BookService>();
+            
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -51,6 +54,9 @@ namespace Bookshelved.Web
             app.UseStaticFiles();
 
             app.UseRouting();
+            
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

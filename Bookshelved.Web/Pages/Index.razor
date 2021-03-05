@@ -1,7 +1,12 @@
 ﻿@page "/"
 
-<h1>Hello, world!</h1>
-
-Welcome to your new app.
-
-<SurveyPrompt Title="How is Blazor working for you?" />
+<div class="container">
+    <AuthorizeView>
+        <Authorized>
+            <p>Something will be displayed here eventually</p>
+        </Authorized>
+        <NotAuthorized>
+            <p>Please <a href="Identity/Account/Login">login</a>, or <a href="Identity/Account/Register">register</a>.</p>
+        </NotAuthorized>
+    </AuthorizeView>
+</div>
