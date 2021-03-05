@@ -1,0 +1,29 @@
+﻿@page "/book/{BookID:int}"
+
+@inject BookService BookService
+@using Bookshelved.Services
+@using Bookshelved.Core.DTOs.Book
+
+<div class="container">
+    @if (BookDetail == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <h1>Viewing @BookDetail.Name</h1>
+        <h2>By: @BookDetail.Author.Forename @BookDetail.Author.Surname</h2>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public int BookID { get; set; }
+
+    public BookDetailsDTO BookDetail { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        BookDetail = await BookService.GetBookDetails(BookID);
+    }
+} 

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Bookshelved.Core.DomainModels.Book;
 using Bookshelved.Core.DTOs;
+using Bookshelved.Core.DTOs.Book;
 using Bookshelved.Core.Interfaces.Repos;
 using Bookshelved.Core.Interfaces.Services;
 using System;
@@ -31,10 +32,10 @@ namespace Bookshelved.Services
             return mappedBooks;
         }
 
-        public async Task<BookDTO> GetBookDetails(int id)
+        public async Task<BookDetailsDTO> GetBookDetails(int id)
         {
             var book = await _bookRepository.GetBookDetails(id);
-            return (book != null) ? _mapper.Map<BookDTO>(book) : null;
+            return (book != null) ? _mapper.Map<BookDetailsDTO>(book) : null;
         }
     }
 }
