@@ -17,7 +17,7 @@ namespace Bookshelved.Services.MappingProfiles
         public MappingProfile()
         {
             #region Book Schema Mappings
-            
+
             CreateMap<Book, BookDTO>()
                 .ReverseMap();
 
@@ -36,7 +36,10 @@ namespace Bookshelved.Services.MappingProfiles
 
             CreateMap<BookProgress, BookProgressDTO>()
                 .ReverseMap();
-            
+
+            CreateMap<ReadingList, ReadingListDTO>()
+                .ReverseMap();
+
             #endregion
 
             #region Account Schema Mappings

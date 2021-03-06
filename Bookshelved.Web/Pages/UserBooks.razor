@@ -2,57 +2,72 @@
 
 @using Bookshelved.Services
 @using Bookshelved.Core.DTOs.Book
+@using Bookshelved.Core.Interfaces.Services
+@using Bookshelved.Core.DTOs.Account
+@using Microsoft.AspNetCore.Http
 @inject BookService BookService
+@inject IReadingListService ReadingListService
 @inject NavigationManager Navigation
+@inject IHttpContextAccessor ContextAccessor
 
 <div class="container">
     <h1>Your Library</h1>
 
-    <!-- Here we want to loop round the users reading lists and display the headers (collapsed by default). Show paginated 
+    <!-- Here we want to loop round the users reading lists and display the headers (collapsed by default). Show paginated
     books under each one. -->
-    
+
     <AuthorizeView>
         <Authorized>
-            <h1>You are signed in as: @context.User.Identity.Name</h1>
+            <p>Here you can see all of your custom reading lists, and view/manage the books under them.</p>
+            @if (_readingLists == null)
+            {
+                <p><em>Loading...</em></p>
+            }
+            else
+            {
+                @foreach (var list in _readingLists)
+                {
+                    <h2>@list.Name</h2>
+                }
+
+                <!--<table class="striped">
+                    <thead>
+                    <tr>
+                        <th>Book IDd</th>
+                        <th>Name</th>
+                        <th>Author</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @* @foreach (var book in _books) *@
+                    @* { *@
+                    @*     <tr> *@
+                    @*         <td>@book.ID</td> *@
+                    @*         <td>@book.Name</td> *@
+                    @*         <td>Test</td> *@
+                    @*         <td><a href="book/@book.ID">View</a></td> *@
+                    @*     </tr> *@
+                    @* } *@
+                    </tbody>
+                </table>-->
+            }
         </Authorized>
         <NotAuthorized>Sign in</NotAuthorized>
     </AuthorizeView>
-    
-    @if (_books == null)
-    {
-        <p><em>Loading...</em></p>
-    }
-    else
-    {
-        <table class="striped">
-            <thead>
-                <tr>
-                    <th>Book IDd</th>
-                    <th>Name</th>
-                    <th>Author</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var book in _books)
-                {
-                    <tr>
-                        <td>@book.ID</td>
-                        <td>@book.Name</td>
-                        <td>Test</td>
-                        <td><a href="book/@book.ID">View</a></td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    }
+
+
 </div>
 
 @code {
     private IEnumerable<BookDTO> _books;
+    private IEnumerable<ReadingListDTO> _readingLists;
+
 
     protected override async Task OnInitializedAsync()
     {
-        _books = BookService.GetAll();
-        
+        // _books = BookService.GetAll();
+
+        // ToDo: This needs changed to use the user ID rather than their name
+        _readingLists = ReadingListService.GetUserReadingLists("54dd1f76-0647-44bc-889e-cfd931a1cf18");
     }
 }

@@ -4,6 +4,7 @@ using Bookshelved.Repository.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Bookshelved.Core.DomainModels.Account;
 
 namespace Bookshelved.Repository
 {
@@ -42,6 +43,7 @@ namespace Bookshelved.Repository
             if (_repos == null)
                 _repos = new Dictionary<string, object>
                 {
+                    { typeof(ReadingList).Name, new Repository<BookshelfContext,TEntity>(_context) },
                     { typeof(Book).Name, new BookRepository(_context) }
                 };
 

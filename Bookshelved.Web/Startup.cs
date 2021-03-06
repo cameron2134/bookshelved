@@ -1,4 +1,5 @@
 using Bookshelved.Core.Interfaces.Repos;
+using Bookshelved.Core.Interfaces.Services;
 using Bookshelved.Repository;
 using Bookshelved.Services;
 using Bookshelved.Services.MappingProfiles;
@@ -28,13 +29,14 @@ namespace Bookshelved.Web
             var connectionString = Configuration.GetConnectionString("BookshelfDB");
 
             services.AddHttpContextAccessor();
-            
+
             services.AddDbContext<BookshelfContext>(o => o.UseSqlServer(connectionString));
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 
             services.AddAutoMapper(typeof(MappingProfile));
             services.AddTransient<BookService>();
-            
+            services.AddTransient<IReadingListService, ReadingListService>();
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -54,7 +56,7 @@ namespace Bookshelved.Web
             app.UseStaticFiles();
 
             app.UseRouting();
-            
+
             app.UseAuthentication();
             app.UseAuthorization();
 
