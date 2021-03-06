@@ -1,4 +1,6 @@
-﻿namespace Bookshelved.Core.DTOs.Book
+﻿using System.Collections.Generic;
+
+namespace Bookshelved.Core.DTOs.Book
 {
     public class BookDetailsDTO
     {
@@ -9,5 +11,6 @@
 
         public SeriesDTO Series { get; set; }
         public AuthorDTO Author { get; set; }
+        public IEnumerable<ReviewDTO> Reviews { get; set; }
     }
 }

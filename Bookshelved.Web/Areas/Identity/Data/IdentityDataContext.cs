@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Bookshelved.Core.DomainModels.Account;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +10,7 @@ using Microsoft.Extensions.WebEncoders.Testing;
 
 namespace Bookshelved.Web.Areas.Identity.Data
 {
-    public class IdentityDataContext : IdentityDbContext<IdentityUser>
+    public class IdentityDataContext : IdentityDbContext<ApplicationUser>
     {
         public IdentityDataContext(DbContextOptions<IdentityDataContext> options)
             : base(options)

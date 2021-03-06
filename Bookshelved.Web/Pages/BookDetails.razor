@@ -13,6 +13,15 @@
     {
         <h1>Viewing @BookDetail.Name</h1>
         <h2>By: @BookDetail.Author.Forename @BookDetail.Author.Surname</h2>
+                    
+        @foreach (var review in @BookDetail.Reviews)
+        {
+            <p>@review.User.Username says:</p>
+            <ul>
+                <li>Rating: @review.Rating / 5</li>
+                <li>Comment: @review.Comment</li>
+            </ul>
+        }                                                              
     }
 </div>
 

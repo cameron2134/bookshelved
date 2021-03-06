@@ -1,4 +1,5 @@
 using System;
+using Bookshelved.Core.DomainModels.Account;
 using Bookshelved.Web.Areas.Identity.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -19,7 +20,7 @@ namespace Bookshelved.Web.Areas.Identity
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("BookshelfDB")));
 
-                services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                     .AddEntityFrameworkStores<IdentityDataContext>();
             });
         }
