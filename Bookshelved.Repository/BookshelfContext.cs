@@ -50,11 +50,21 @@ namespace Bookshelved.Repository
                     .WithMany(o => o.Reviews)
                     .HasForeignKey(o => o.BookID)
                     .HasConstraintName("FK_Reviews_Books");
-                
+
                 entity.HasOne<ApplicationUser>(o => o.ApplicationUser)
                     .WithMany(o => o.BookReviews)
                     .HasForeignKey(o => o.UserId)
                     .HasConstraintName("FK_Reviews_AspNetUsers");
+            });
+
+            modelBuilder.Entity<ReadingList>(entity =>
+            {
+                entity.ToTable("ReadingList", "Account");
+
+                entity.HasOne<ApplicationUser>(o => o.ApplicationUser)
+                    .WithMany(o => o.ReadingLists)
+                    .HasForeignKey(o => o.UserID)
+                    .HasConstraintName("FK_ReadingList_AspNetUsers");
             });
 
             #endregion Book Schema
