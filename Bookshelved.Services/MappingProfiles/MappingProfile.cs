@@ -16,6 +16,8 @@ namespace Bookshelved.Services.MappingProfiles
     {
         public MappingProfile()
         {
+            #region Book Schema Mappings
+            
             CreateMap<Book, BookDTO>()
                 .ReverseMap();
 
@@ -32,11 +34,18 @@ namespace Bookshelved.Services.MappingProfiles
                 .ForMember(dest => dest.User, opt => opt.MapFrom(src => src.ApplicationUser))
                 .ReverseMap();
 
+            CreateMap<BookProgress, BookProgressDTO>()
+                .ReverseMap();
+            
+            #endregion
+
+            #region Account Schema Mappings
             CreateMap<ApplicationUser, ApplicationUserDTO>()
                 .ForMember(dest => dest.ID, opt => opt.MapFrom(src => src.Id))
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))
                 .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.UserName))
                 .ReverseMap();
+            #endregion
         }
     }
 }
