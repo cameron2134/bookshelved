@@ -28,7 +28,7 @@ namespace Bookshelved.Services.MappingProfiles
             CreateMap<Author, AuthorDTO>()
                 .ReverseMap();
 
-            CreateMap<BookReview, ReviewDTO>()
+            CreateMap<Review, ReviewDTO>()
                 .ForMember(dest => dest.User, opt => opt.MapFrom(src => src.ApplicationUser))
                 .ReverseMap();
 

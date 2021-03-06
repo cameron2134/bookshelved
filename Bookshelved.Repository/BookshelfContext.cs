@@ -42,7 +42,7 @@ namespace Bookshelved.Repository
                 entity.ToTable("Series", "Book");
             });
 
-            modelBuilder.Entity<BookReview>(entity =>
+            modelBuilder.Entity<Review>(entity =>
             {
                 entity.ToTable("Reviews", "Book");
 

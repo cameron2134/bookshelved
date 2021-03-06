@@ -2,7 +2,7 @@
 
 namespace Bookshelved.Core.DomainModels.Book
 {
-    public class BookReview
+    public class Review
     {
         public int ID { get; set; }
         public string UserId { get; set; }

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Bookshelved.Core.DTOs
+namespace Bookshelved.Core.DTOs.Book
 {
     public class BookDTO
     {

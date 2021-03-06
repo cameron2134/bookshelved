@@ -12,6 +12,6 @@ namespace Bookshelved.Core.DomainModels.Book
         public virtual BookProgress BookProgress { get; set; }
         public virtual Series Series { get; set; }
         public virtual Author Author { get; set; }
-        public virtual ICollection<BookReview> Reviews { get; set; }
+        public virtual ICollection<Review> Reviews { get; set; }
     }
 }

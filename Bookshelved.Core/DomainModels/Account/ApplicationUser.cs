@@ -6,6 +6,6 @@ namespace Bookshelved.Core.DomainModels.Account
 {
     public class ApplicationUser : IdentityUser
     {
-        public virtual ICollection<BookReview> BookReviews { get; set; } 
+        public virtual ICollection<Review> BookReviews { get; set; } 
     }
 }
