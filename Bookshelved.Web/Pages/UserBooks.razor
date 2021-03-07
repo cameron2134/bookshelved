@@ -23,9 +23,6 @@
             }
             else
             {
-
-
-
                 @foreach (var list in _readingLists)
                 {
                     <ul class="collection with-header">
@@ -33,32 +30,11 @@
 
                         @foreach (var book in list.Books)
                         {
-                            <li class="collection-item"><div>@book.Name<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+                            <li class="collection-item"><div>@book.Name<a href="book/@book.ID" class="secondary-content"><i class="material-icons">send</i></a></div></li>
                         }
 
                     </ul>
                 }
-
-                <!--<table class="striped">
-                    <thead>
-                    <tr>
-                        <th>Book IDd</th>
-                        <th>Name</th>
-                        <th>Author</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @* @foreach (var book in _books) *@
-                    @* { *@
-                    @*     <tr> *@
-                    @*         <td>@book.ID</td> *@
-                    @*         <td>@book.Name</td> *@
-                    @*         <td>Test</td> *@
-                    @*         <td><a href="book/@book.ID">View</a></td> *@
-                    @*     </tr> *@
-                    @* } *@
-                    </tbody>
-                </table>-->
             }
         </Authorized>
         <NotAuthorized>Sign in</NotAuthorized>
