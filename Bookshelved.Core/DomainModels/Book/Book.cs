@@ -13,5 +13,6 @@ namespace Bookshelved.Core.DomainModels.Book
         public virtual Series Series { get; set; }
         public virtual Author Author { get; set; }
         public virtual ICollection<Review> Reviews { get; set; }
+        public virtual ICollection<ReadingListBooks> BooksInList { get; set; }
     }
 }

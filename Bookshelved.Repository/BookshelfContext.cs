@@ -67,6 +67,17 @@ namespace Bookshelved.Repository
                     .HasConstraintName("FK_ReadingList_AspNetUsers");
             });
 
+            modelBuilder.Entity<ReadingListBooks>(entity =>
+            {
+                entity.ToTable("ReadingListBooks", "dbo");
+
+                entity.HasOne(o => o.Book)
+                    .WithMany(o => o.BooksInList);
+
+                entity.HasOne(o => o.ReadingList)
+                    .WithMany(o => o.BooksInList);
+            });
+
             #endregion Book Schema
 
             modelBuilder.Entity<ApplicationUser>(entity =>

@@ -1,10 +1,5 @@
 ﻿@page "/userbooks"
 
-@using Bookshelved.Services
-@using Bookshelved.Core.DTOs.Book
-@using Bookshelved.Core.Interfaces.Services
-@using Bookshelved.Core.DTOs.Account
-@using Microsoft.AspNetCore.Http
 @inject BookService BookService
 @inject IReadingListService ReadingListService
 @inject NavigationManager Navigation
@@ -19,15 +14,29 @@
     <AuthorizeView>
         <Authorized>
             <p>Here you can see all of your custom reading lists, and view/manage the books under them.</p>
+
+            @* ToDo: Button to add a new custom list. *@
+
             @if (_readingLists == null)
             {
                 <p><em>Loading...</em></p>
             }
             else
             {
+
+
+
                 @foreach (var list in _readingLists)
                 {
-                    <h2>@list.Name</h2>
+                    <ul class="collection with-header">
+                        <li class="collection-header"><h4>@list.Name</h4><i>@list.Description</i></li>
+
+                        @foreach (var book in list.Books)
+                        {
+                            <li class="collection-item"><div>@book.Name<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+                        }
+
+                    </ul>
                 }
 
                 <!--<table class="striped">

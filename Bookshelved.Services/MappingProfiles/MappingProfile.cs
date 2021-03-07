@@ -38,6 +38,7 @@ namespace Bookshelved.Services.MappingProfiles
                 .ReverseMap();
 
             CreateMap<ReadingList, ReadingListDTO>()
+                .ForMember(dest => dest.Books, opt => opt.MapFrom(src => src.BooksInList.Select(o => o.Book)))
                 .ReverseMap();
 
             #endregion

@@ -24,7 +24,7 @@ namespace Bookshelved.Services
 
         public IEnumerable<ReadingListDTO> GetUserReadingLists(string userID)
         {
-            var results = _repo.Get(o => o.UserID == userID);
+            var results = _repo.Get(o => o.UserID == userID, includeProperties: "BooksInList,BooksInList.Book");
             return _mapper.Map<IEnumerable<ReadingListDTO>>(results);
         }
     }

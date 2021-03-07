@@ -43,6 +43,7 @@ namespace Bookshelved.Repository
             if (_repos == null)
                 _repos = new Dictionary<string, object>
                 {
+                    // ToDo: We need to fix this, figure out what the generic repo should be
                     { typeof(ReadingList).Name, new Repository<BookshelfContext,TEntity>(_context) },
                     { typeof(Book).Name, new BookRepository(_context) }
                 };

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Bookshelved.Core.DomainModels.Book;
 
 namespace Bookshelved.Core.DomainModels.Account
 {
@@ -10,6 +11,6 @@ namespace Bookshelved.Core.DomainModels.Account
         public string Description { get; set; }
 
         public virtual ApplicationUser ApplicationUser { get; set; }
-        public virtual ICollection<Book.Book> Books { get; set; }
+        public virtual ICollection<ReadingListBooks> BooksInList { get; set; }
     }
 }
