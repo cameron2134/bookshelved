@@ -1,9 +1,8 @@
 ﻿using System;
-using Bookshelved.Core.DomainModels.Account;
 
-namespace Bookshelved.Core.DomainModels.Book
+namespace Bookshelved.Core.DTOs.Book
 {
-    public class BookProgress
+    public class BookProgressDTO
     {
         public int ID { get; set; }
         public int BookID { get; set; }
@@ -11,8 +10,5 @@ namespace Bookshelved.Core.DomainModels.Book
         public DateTime? DateStarted { get; set; }
         public DateTime? DateFinished { get; set; }
         public int? CurrentPage { get; set; }
-
-        public virtual Book Book { get; set; }
-        public virtual ApplicationUser ApplicationUser { get; set; }
     }
 }

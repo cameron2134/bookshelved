@@ -16,6 +16,8 @@ namespace Bookshelved.Repository.Repositories
             return _dbSet
                 .Include(o => o.Author)
                 .Include(o => o.Series)
+                .Include(o => o.Reviews)
+                .ThenInclude(o => o.ApplicationUser)
                 .FirstOrDefaultAsync(o => o.ID == id);
         }
     }

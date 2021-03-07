@@ -1,4 +1,5 @@
-﻿using Bookshelved.Core.DomainModels.Book;
+﻿using Bookshelved.Core.DomainModels.Account;
+using Bookshelved.Core.DomainModels.Book;
 using Microsoft.EntityFrameworkCore;
 
 namespace Bookshelved.Repository
@@ -41,10 +42,48 @@ namespace Bookshelved.Repository
                 entity.ToTable("Series", "Book");
             });
 
-            modelBuilder.Entity<Reviews>()
-                .ToTable("Reviews", "Book");
+            modelBuilder.Entity<Review>(entity =>
+            {
+                entity.ToTable("Reviews", "Book");
+
+                entity.HasOne<Book>(o => o.Book)
+                    .WithMany(o => o.Reviews)
+                    .HasForeignKey(o => o.BookID)
+                    .HasConstraintName("FK_Reviews_Books");
+
+                entity.HasOne<ApplicationUser>(o => o.ApplicationUser)
+                    .WithMany(o => o.BookReviews)
+                    .HasForeignKey(o => o.UserId)
+                    .HasConstraintName("FK_Reviews_AspNetUsers");
+            });
+
+            modelBuilder.Entity<ReadingList>(entity =>
+            {
+                entity.ToTable("ReadingList", "Account");
+
+                entity.HasOne<ApplicationUser>(o => o.ApplicationUser)
+                    .WithMany(o => o.ReadingLists)
+                    .HasForeignKey(o => o.UserID)
+                    .HasConstraintName("FK_ReadingList_AspNetUsers");
+            });
+
+            modelBuilder.Entity<ReadingListBooks>(entity =>
+            {
+                entity.ToTable("ReadingListBooks", "dbo");
+
+                entity.HasOne(o => o.Book)
+                    .WithMany(o => o.BooksInList);
+
+                entity.HasOne(o => o.ReadingList)
+                    .WithMany(o => o.BooksInList);
+            });
 
             #endregion Book Schema
+
+            modelBuilder.Entity<ApplicationUser>(entity =>
+            {
+                entity.ToTable("AspNetUsers", "dbo");
+            });
         }
     }
 }
